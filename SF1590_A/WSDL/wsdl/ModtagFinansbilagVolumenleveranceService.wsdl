@@ -29,7 +29,7 @@
 			<soap:operation soapAction=""/>
 			<wsdl:input>
 				<!-- input policy reference -->
-				<wsp:PolicyReference URI="../policies/policies.xml#Input_Policy"/>
+				<wsp:PolicyReference URI="../policies/policies-SCH.xml#Input_Policy"/>
 				<soap:body use="literal"/>
 			</wsdl:input>
 			<wsdl:output>
