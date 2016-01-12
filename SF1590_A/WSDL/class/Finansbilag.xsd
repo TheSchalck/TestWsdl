@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:oir="http://serviceplatformen.dk/xml/wsdl/soap11/OIR/OIR/1/" targetNamespace="http://serviceplatformen.dk/xml/wsdl/soap11/OIR/OIR/1/" elementFormDefault="qualified">
+	<xs:annotation>
+		<xs:documentation>Et  Finansbilag samler alle relevante data i forhold til posteringer i en kommunes okonomisystem. Her samles de forskellige referencer som har relevans i forskellige situationer.</xs:documentation>
+	</xs:annotation>
+	<xs:include schemaLocation="../types/UUIDType.xsd"/>
+	<xs:element name="FinansbilagUnikIdentifikation" type="oir:UUIDType">
+		<xs:annotation>
+			<xs:documentation>Unik identifikation af finansbilaget.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="FinansbilagBilagsreference" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>Entydig reference for bilaget i det oprindelige system.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="FinansbilagBogforingsdato" type="xs:date">
+		<xs:annotation>
+			<xs:documentation>Feltet angiver hvilken dato bilaget skal bogfores.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="FinansbilagPeriode" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>Angiver perioden som finansbilaget vedrorer. Angives som YYYYMM. Maaneden(MM) kan vaere supplementsperioder. Se eventuelt indrigsministeriets regler omkring supplementsperioder her: http://budregn.sim.dk/media/347391/7.0.pdf</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="FinansbilagFirmakode" type="oir:UUIDType">
+		<xs:annotation>
+			<xs:documentation>Feltet giver mulighed for at underopdele en kommunes ERP system. Saa en kommune kan have flere regnskabsenheder. Angives som UUID i Klassifiaktion.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="FinansbilagVirksomhed" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>Virksomheden som finansbilaget tilhorer. Angives som URN i Organisation.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="FinansbilagBilagstitel" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>Kort beskrivende tekst for hele bilaget.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="FinansbilagBilagsdato" type="xs:date">
+		<xs:annotation>
+			<xs:documentation>Dato for hvornaar bilaget er oprettet.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+</xs:schema>

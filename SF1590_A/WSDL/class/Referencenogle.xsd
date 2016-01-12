@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:oir="http://serviceplatformen.dk/xml/wsdl/soap11/OIR/OIR/1/" targetNamespace="http://serviceplatformen.dk/xml/wsdl/soap11/OIR/OIR/1/" elementFormDefault="qualified">
+	<xs:annotation>
+		<xs:documentation>Her kan angives referencer til bilag eller andre entiteter som har en sammenhaeng med posteringen.</xs:documentation>
+	</xs:annotation>
+	<xs:include schemaLocation="../types/UUIDType.xsd"/>
+	<xs:element name="ReferencenogleVaerdi" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>Her kan angives en referencenogle til den specifikke entitet der referes til.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="ReferencenogleType" type="oir:UUIDType">
+		<xs:annotation>
+			<xs:documentation>Beskriver typen paa det der refereres til. Kunne f.eks. vaere "Debitorforhold" Angives som UUID i Klassifiaktion.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+</xs:schema>

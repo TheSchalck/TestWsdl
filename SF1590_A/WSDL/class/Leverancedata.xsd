@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:oir="http://serviceplatformen.dk/xml/wsdl/soap11/OIR/OIR/1/" targetNamespace="http://serviceplatformen.dk/xml/wsdl/soap11/OIR/OIR/1/" elementFormDefault="qualified">
+	<xs:annotation>
+		<xs:documentation>Data som er gaeldende for hele leverancen, bruges til kontrolelementer og myndighedsidentifikation.</xs:documentation>
+	</xs:annotation>
+	<xs:include schemaLocation="../types/UUIDType.xsd"/>
+	<xs:include schemaLocation="../types/BelobType.xsd"/>
+	<xs:element name="LeverancedataAfgivendeITSystem" type="oir:UUIDType">
+		<xs:annotation>
+			<xs:documentation>Det it-system, som er dataafsender, af finansbilaget. Angivet som UUID i Organisation.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="LeverancedataAntalFinansbilag" type="xs:integer">
+		<xs:annotation>
+			<xs:documentation>Antallet af posteringer i bilaget. Feltet anvendes til check af om posteringsbilaget er komplet.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="LeverancedataAntalPosteringer" type="xs:integer">
+		<xs:annotation>
+			<xs:documentation>Antallet af posteringer på tværs af bilag i leverancen. Feltet anvendes til check af om transaktionen er komplet.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="LeverancedataSumAfDebetPosteringer" type="oir:BelobType">
+		<xs:annotation>
+			<xs:documentation>Sum af alle debetposteringer i leverancen. Feltet anvendes til check af om transaktionen er komplet.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="LeverancedataSumAfKreditPosteringer" type="oir:BelobType">
+		<xs:annotation>
+			<xs:documentation>Sum af alle kreditposteringer i leverancen. Feltet anvendes til check af om transaktionen er komplet.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="LeverancedataAfgivendeMyndighed" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>Myndighed som har dannet leverencen. Angivet som URN i organisation</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="LeverancedataBogforingsansvarligMyndighed" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>Myndigheden som har det bogforingsmaessige ansvar for leverancen. Angives som URN i Organisation</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="LeverancedataTransaktionsID" type="oir:UUIDType">
+		<xs:annotation>
+			<xs:documentation>Unikt transsaktions ID for leverancen. Angives som UUID.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="LeverancedataRegistreringstidspunkt" type="xs:dateTime">
+		<xs:annotation>
+			<xs:documentation>Tidspunkt for afsendersystemet dannelse af transaktionen.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+</xs:schema>

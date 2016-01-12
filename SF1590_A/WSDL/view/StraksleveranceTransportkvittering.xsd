@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- edited with XMLSpy v2015 rel. 3 (x64) (http://www.altova.com) by Eskild Nejsum (KOMBIT A/S) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:oir="http://serviceplatformen.dk/xml/wsdl/soap11/OIR/OIR/1/" targetNamespace="http://serviceplatformen.dk/xml/wsdl/soap11/OIR/OIR/1/" elementFormDefault="qualified">
+	<xs:annotation>
+		<xs:documentation>Et OiR finansbilag</xs:documentation>
+	</xs:annotation>
+	<xs:include schemaLocation="../class/Kvittering.xsd"/>
+	<xs:include schemaLocation="../class/Leverancedata.xsd"/>
+	<xs:element name="StraksleveranceTransportkvittering">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="oir:LeverancedataTransaktionsID"/>
+				<xs:element ref="oir:LeverancedataRegistreringstidspunkt"/>
+				<xs:element ref="oir:KvitteringTransportResultat"/>
+				<xs:element ref="oir:KvitteringBegrundelse" minOccurs="0"/>
+				<xs:element ref="oir:KvitteringÅrsag" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

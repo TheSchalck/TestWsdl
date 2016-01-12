@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:oir="http://serviceplatformen.dk/xml/wsdl/soap11/OIR/OIR/1/" targetNamespace="http://serviceplatformen.dk/xml/wsdl/soap11/OIR/OIR/1/" elementFormDefault="qualified">
+	<xs:annotation>
+		<xs:documentation>De primaere dimensioner indeholder konteringsdata for posteringen. Med undtagelse af OrganisatoriskReference stammer alle dimmensionerne fra indenrigsministeriets autoriserede kontoplan. For yderligere specifikation af kontoplanen henvises til indenrigsministeriets hjemmeside:
+http://budregn.sim.dk/budget-og-regnskabssystem-for-kommuner.aspx
+Vaerdierne som findes i klassifikationerne for de primaere dimensioner vil altid vaere de af indrigsministeret autoriserede vaerdier. Ønskes der konteret mere specifikt f.eks. kommunespecifikke grupperinger, skal den oprettes som en klassifikation til de SekundaereDimensioner.</xs:documentation>
+	</xs:annotation>
+	<xs:include schemaLocation="../types/UUIDType.xsd"/>
+	<xs:element name="PrimaereDimensionerKonto" type="oir:UUIDType">
+		<xs:annotation>
+			<xs:documentation>Samling af kontodimensionerne Hovedkonto, Hovedfunktion, Funktion og Gruppering fra indrigsministeriets kontoplan. Angives som UUID i Klassifiaktion.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="PrimaereDimensionerDranst" type="oir:UUIDType">
+		<xs:annotation>
+			<xs:documentation>Betegnelsen »dranst« er et kunstigt skabt begreb bestaaende af de forste to bogstaver fra hvert af ordene drift, anlaeg og status. Med dransten opdeles de kommunale udgifter og indtaegter m.v. efter type. Angives som UUID i Klassifiaktion.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="PrimaereDimensionerEjerforhold" type="oir:UUIDType">
+		<xs:annotation>
+			<xs:documentation>Beskriver ejerforholdet til posteringen. Angives som UUID i Klassifiaktion.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="PrimaereDimensionerOmkostningssted" type="oir:UUIDType">
+		<xs:annotation>
+			<xs:documentation>Omkostningssted beskriver det fysiske sted for omkostningen. Kunne f.eks. vaere skolen hvis posteringen omhandler indkob af skoleboger. Afspejler den organisatorisk enhed, som er ansvarlig for de anvendte omkostninger. Angives som UUID i Klassifiaktion.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="PrimaereDimensionerArt" type="oir:UUIDType">
+		<xs:annotation>
+			<xs:documentation>Med artsinddelingen sker der en specifikation af de kommunale udgifter og indtaegter m.v. efter deres art - lon, varekob, tjenesteydelser etc. - og dermed efter karakteren af det ressourceforbrug, de indebaerer. Angives som UUID i Klassifiaktion.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="PrimaereDimensionerOrganisatoriskReference" type="oir:UUIDType">
+		<xs:annotation>
+			<xs:documentation>Afspejler den organisatorisk enhed, som har budgetansvar. Angives som UUID i Klassifiaktion.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+</xs:schema>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:oir="http://serviceplatformen.dk/xml/wsdl/soap11/OIR/OIR/1/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsp="http://www.w3.org/ns/ws-policy" name="DistributionService" targetNamespace="http://serviceplatformen.dk/xml/wsdl/soap11/OIR/OIR/1/">
+	<wsdl:types>
+		<xsd:schema targetNamespace="http://serviceplatformen.dk/xml/wsdl/soap11/OIR/OIR/1/">
+			<xsd:include schemaLocation="../view/FinansbilagReq.xsd"/>
+			<xsd:include schemaLocation="../view/Forretningskvittering.xsd"/>
+			<xsd:include schemaLocation="../view/VolumenleveranceTransportkvittering.xsd"/>
+		</xsd:schema>
+	</wsdl:types>
+	<wsdl:message name="OIRFinansbilagLeverance">
+		<wsdl:part name="parameters" element="oir:FinansbilagReq"/>
+	</wsdl:message>
+	<wsdl:message name="Forretningskvittering">
+		<wsdl:part name="parameters" element="oir:Forretningskvittering"/>
+	</wsdl:message>
+	<wsdl:message name="VolumenleveranceTransportkvittering">
+		<wsdl:part name="parameters" element="oir:VolumenleveranceTransportkvittering"/>
+	</wsdl:message>
+	<wsdl:portType name="ModtagFinansbilagVolumenleveranceServicePort">
+		<wsdl:operation name="Volumenleverance">
+			<wsdl:input message="oir:OIRFinansbilagLeverance"/>
+			<wsdl:output message="oir:VolumenleveranceTransportkvittering"/>
+			<wsdl:fault name="VolumenleveranceTransportkvittering" message="oir:VolumenleveranceTransportkvittering"/>
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:binding name="ModtagFinansbilagVolumenleveranceServiceBinding" type="oir:ModtagFinansbilagVolumenleveranceServicePort">
+		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>0
+		<wsdl:operation name="Volumenleverance">
+			<soap:operation soapAction=""/>
+			<wsdl:input>
+				<!-- input policy reference -->
+				<wsp:PolicyReference URI="../policies/policies.xml#Input_Policy"/>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+			<wsdl:fault name="VolumenleveranceTransportkvittering">
+				<soap:fault name="VolumenleveranceTransportkvittering" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="ModtagFinansbilagVolumenleveranceService">
+		<wsdl:port name="ModtagFinansbilagVolumenleveranceServicePort" binding="oir:ModtagFinansbilagVolumenleveranceServiceBinding">
+			<soap:address location="http://localhost:8080/service/OiRFinans/1"/>
+			<wsp:PolicyReference URI="../policies/policies.xml#STS_SAML_Token_policy"/>
+			<wsp:PolicyReference URI="../policies/policies.xml#TLS_policy"/>
+		</wsdl:port>
+	</wsdl:service>
+	<xsd:annotation>
+		<xsd:documentation xml:lang="en">
+			Version 1.0 of the API for the ModtagFinansbilagService
+    	</xsd:documentation>
+	</xsd:annotation>
+</wsdl:definitions>

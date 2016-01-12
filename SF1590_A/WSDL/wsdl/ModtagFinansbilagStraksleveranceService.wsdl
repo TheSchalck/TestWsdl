@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:oir="http://serviceplatformen.dk/xml/wsdl/soap11/OIR/OIR/1/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsp="http://www.w3.org/ns/ws-policy" name="DistributionService" targetNamespace="http://serviceplatformen.dk/xml/wsdl/soap11/OIR/OIR/1/">
+	<wsdl:types>
+		<xsd:schema targetNamespace="http://serviceplatformen.dk/xml/wsdl/soap11/OIR/OIR/1/">
+			<xsd:include schemaLocation="../view/FinansbilagReq.xsd"/>
+			<xsd:include schemaLocation="../view/Forretningskvittering.xsd"/>
+			<xsd:include schemaLocation="../view/StraksleveranceTransportkvittering.xsd"/>
+		</xsd:schema>
+	</wsdl:types>
+	<wsdl:message name="OIRFinansbilagLeverance">
+		<wsdl:part name="parameters" element="oir:FinansbilagReq"/>
+	</wsdl:message>
+	<wsdl:message name="Forretningskvittering">
+		<wsdl:part name="parameters" element="oir:Forretningskvittering"/>
+	</wsdl:message>
+	<wsdl:message name="StraksleveranceTransportkvittering">
+		<wsdl:part name="parameters" element="oir:StraksleveranceTransportkvittering"/>
+	</wsdl:message>
+	<wsdl:portType name="ModtagFinansbilagStraksleveranceServicePort">
+		<wsdl:operation name="Straksleverance">
+			<wsdl:input message="oir:OIRFinansbilagLeverance"/>
+			<wsdl:output message="oir:Forretningskvittering"/>
+			<wsdl:fault name="StraksleveranceTransportkvittering" message="oir:StraksleveranceTransportkvittering"/>
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:binding name="ModtagFinansbilagStraksleveranceServiceBinding" type="oir:ModtagFinansbilagStraksleveranceServicePort">
+		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+		<wsdl:operation name="Straksleverance">
+			<soap:operation soapAction=""/>
+			<wsdl:input>
+				<!-- input policy reference -->
+				<wsp:PolicyReference URI="../policies/policies.xml#Input_Policy"/>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+			<wsdl:fault name="StraksleveranceTransportkvittering">
+				<soap:fault name="StraksleveranceTransportkvittering" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="ModtagFinansbilagStraksleveranceService">
+		<wsdl:port name="ModtagFinansbilagStraksleveranceServicePort" binding="oir:ModtagFinansbilagStraksleveranceServiceBinding">
+			<soap:address location="http://localhost:8080/service/OiRFinans/1"/>
+			<wsp:PolicyReference URI="../policies/policies.xml#STS_SAML_Token_policy"/>
+			<wsp:PolicyReference URI="../policies/policies.xml#TLS_policy"/>
+		</wsdl:port>
+	</wsdl:service>
+	<xsd:annotation>
+		<xsd:documentation xml:lang="en">
+			Version 1.0 of the API for the ModtagFinansbilagService
+    	</xsd:documentation>
+	</xsd:annotation>
+</wsdl:definitions>

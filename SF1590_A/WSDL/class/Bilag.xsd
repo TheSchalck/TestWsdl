@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:oir="http://serviceplatformen.dk/xml/wsdl/soap11/OIR/OIR/1/" targetNamespace="http://serviceplatformen.dk/xml/wsdl/soap11/OIR/OIR/1/" elementFormDefault="qualified">
+	<xs:annotation>
+		<xs:documentation>Bilag som kan vedhaeftes. Kunne f.eks vaere bestillingen af briller. Vedhaeftes som fil, f.eks. PDF.</xs:documentation>
+	</xs:annotation>
+	<xs:include schemaLocation="../types/UUIDType.xsd"/>
+	<xs:element name="BilagFilType" type="oir:UUIDType">
+		<xs:annotation>
+			<xs:documentation>Angiver filtypen paa den vedhaeftede fil. f.eks. PDF. Angives som UUID i Klassifiaktion.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="BilagFil" type="xs:hexBinary">
+		<xs:annotation>
+			<xs:documentation>Filen som skal vedhaeftes som bilag</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+</xs:schema>

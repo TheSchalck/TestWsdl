@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2015 rel. 3 (x64) (http://www.altova.com) by Eskild Nejsum (KOMBIT A/S) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:oir="http://serviceplatformen.dk/xml/wsdl/soap11/OIR/OIR/1/" xmlns:callctx="http://serviceplatformen.dk/xml/schemas/CallContext/1/" xmlns:autctx="http://serviceplatformen.dk/xml/schemas/AuthorityContext/1/" targetNamespace="http://serviceplatformen.dk/xml/wsdl/soap11/OIR/OIR/1/" elementFormDefault="qualified">
+	<xs:annotation>
+		<xs:documentation>Debitorrequests</xs:documentation>
+	</xs:annotation>
+	<xs:import namespace="http://serviceplatformen.dk/xml/schemas/CallContext/1/" schemaLocation="../view/serviceplatformen/CallContext_1.xsd"/>
+	<xs:import namespace="http://serviceplatformen.dk/xml/schemas/AuthorityContext/1/" schemaLocation="../view/serviceplatformen/AuthorityContext.xsd"/>
+	<xs:include schemaLocation="../view/OIRFinansbilagLeverance.xsd"/>
+	<xs:element name="FinansbilagReq">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="autctx:AuthorityContext" minOccurs="0"/>
+				<xs:element ref="callctx:CallContext" minOccurs="0"/>
+				<xs:element ref="oir:FinansbilagLeverance"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:oir="http://serviceplatformen.dk/xml/wsdl/soap11/OIR/OIR/1/" targetNamespace="http://serviceplatformen.dk/xml/wsdl/soap11/OIR/OIR/1/" elementFormDefault="qualified">
+	<xs:annotation>
+		<xs:documentation>xsd der holder felter som benyttes til transport- og forretningskvittering</xs:documentation>
+	</xs:annotation>
+	<xs:include schemaLocation="../types/UUIDType.xsd"/>
+	<xs:element name="KvitteringTransaktionsID" type="oir:UUIDType">
+		<xs:annotation>
+			<xs:documentation>Entydig reference for kvitteringspakken</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="KvitteringBogforingsITSystem" type="oir:UUIDType">
+		<xs:annotation>
+			<xs:documentation>Det afsendende bogforingssystem, som er modtager af finansposteringerne.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="KvitteringRegistreringstidspunkt" type="xs:dateTime">
+		<xs:annotation>
+			<xs:documentation>Tidspunkt for bogforingssystemets dannelse af den samlede kvitteringspakke.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="KvitteringValideringstidspunkt" type="xs:dateTime">
+		<xs:annotation>
+			<xs:documentation>Tidspunkt for bogforingssystemets validering af finansposten.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="KvitteringAntalKvitteringer" type="xs:integer">
+		<xs:annotation>
+			<xs:documentation>Antallet af posteringskvitteringer i filen.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="KvitteringResultat">
+		<xs:simpleType>
+			<xs:annotation>
+				<xs:documentation>Resultatet af den forretningsmaessige validering i bogforingssystemet: Accepteret: Bogforingssystemet har accepteret dataover-dragelse. Afvist: Bogforingssystemet accepterer ikke dataover-dragelse. Under behandling: Bogforingssystemet er i faerd med at tage stilling til dataoverdragelsen.</xs:documentation>
+			</xs:annotation>
+			<xs:restriction base="xs:string">
+				<xs:enumeration value="Accepteret"/>
+				<xs:enumeration value="Afvist"/>
+				<xs:enumeration value="Under behandling"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="KvitteringTransportResultat">
+		<xs:simpleType>
+			<xs:annotation>
+				<xs:documentation>Resultatet af transporten. Fejl: Fejl i kommunikationen, fx timeout ved servicekald til bogføringssystemet. Service ikke tilsluttet: Angiver at den pågældende myndig-heds bogføringssystem ikke understøtter servicekaldet.</xs:documentation>
+			</xs:annotation>
+			<xs:restriction base="xs:string">
+				<xs:enumeration value="Fejl"/>
+				<xs:enumeration value="Service ikke tilsluttet"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="KvitteringBatchTransportResultat">
+		<xs:simpleType>
+			<xs:annotation>
+				<xs:documentation>Resultat af levering til myndighedens bog-føringssystem indbakke på SFTP-serveren. Resultatet gælder samtlige posteringer i batchleverancen. Ok: Leverancen gennemført. Fejl: Leverancen kunne ikke gennemføres.</xs:documentation>
+			</xs:annotation>
+			<xs:restriction base="xs:string">
+				<xs:enumeration value="Ok"/>
+				<xs:enumeration value="Fejl"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="KvitteringBegrundelse" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>Forklarende tekst til sagsbehandler Obligatorisk ved status = ’Afvist’</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="KvitteringÅrsag" type="oir:UUIDType">
+		<xs:annotation>
+			<xs:documentation>Årsag til resultatet. Obligatorisk ved status = ’Afvist’</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="KvitteringFejlkode" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>Bogforingssystemet kan angive en eller flere fejlkoder, som forklaring til afvisningsaarsagen.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="KvitteringFejltekst" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>Bogforingssystemet kan for hver fejlkode angivelse angive en supplerende fejltekst.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+</xs:schema>

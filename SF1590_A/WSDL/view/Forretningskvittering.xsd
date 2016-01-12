@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- edited with XMLSpy v2015 rel. 3 (x64) (http://www.altova.com) by Eskild Nejsum (KOMBIT A/S) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:oir="http://serviceplatformen.dk/xml/wsdl/soap11/OIR/OIR/1/" targetNamespace="http://serviceplatformen.dk/xml/wsdl/soap11/OIR/OIR/1/" elementFormDefault="qualified">
+	<xs:annotation>
+		<xs:documentation>ForretningsKvittering for en eller flere finansposteringer.</xs:documentation>
+	</xs:annotation>
+	<xs:include schemaLocation="../types/Forretningskvittering.xsd"/>
+	<xs:element name="Forretningskvittering">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="oir:KvitteringTransaktionsID"/>
+				<xs:element ref="oir:KvitteringRegistreringstidspunkt"/>
+				<xs:element ref="oir:LeverancedataAfgivendeMyndighed"/>
+				<xs:element ref="oir:LeverancedataBogforingsansvarligMyndighed"/>
+				<xs:element ref="oir:LeverancedataAfgivendeITSystem"/>
+				<xs:element ref="oir:KvitteringBogforingsITSystem"/>
+				<xs:element ref="oir:KvitteringAntalKvitteringer"/>
+				<xs:element name="Finansbilag" type="oir:FinansbilagKvittering"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

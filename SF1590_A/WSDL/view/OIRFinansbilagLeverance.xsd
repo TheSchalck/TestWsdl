@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- edited with XMLSpy v2015 rel. 3 (x64) (http://www.altova.com) by Eskild Nejsum (KOMBIT A/S) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:oir="http://serviceplatformen.dk/xml/wsdl/soap11/OIR/OIR/1/" targetNamespace="http://serviceplatformen.dk/xml/wsdl/soap11/OIR/OIR/1/" elementFormDefault="qualified">
+	<xs:annotation>
+		<xs:documentation>Et OiR finansbilag</xs:documentation>
+	</xs:annotation>
+	<xs:include schemaLocation="../class/Leverancedata.xsd"/>
+	<xs:include schemaLocation="../class/Valuta.xsd"/>
+	<xs:include schemaLocation="../class/Bilag.xsd"/>
+	<xs:include schemaLocation="../class/Ydelsesmodtager.xsd"/>
+	<xs:include schemaLocation="../class/Betalingsmodtager.xsd"/>
+	<xs:include schemaLocation="../class/Registrantbogforing.xsd"/>
+	<xs:include schemaLocation="../class/PrimaereDimensioner.xsd"/>
+	<xs:include schemaLocation="../class/SekundaereDimensioner.xsd"/>
+	<xs:include schemaLocation="../class/Referencenogle.xsd"/>
+	<xs:include schemaLocation="../class/Posteringsdata.xsd"/>
+	<xs:include schemaLocation="../class/Finansbilag.xsd"/>
+	<xs:element name="FinansbilagLeverance">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="oir:LeverancedataAfgivendeMyndighed"/>
+				<xs:element ref="oir:LeverancedataBogforingsansvarligMyndighed"/>
+				<xs:element ref="oir:LeverancedataAfgivendeITSystem"/>
+				<xs:element ref="oir:LeverancedataTransaktionsID"/>
+				<xs:element ref="oir:LeverancedataRegistreringstidspunkt"/>
+				<xs:element ref="oir:LeverancedataAntalFinansbilag"/>
+				<xs:element ref="oir:LeverancedataAntalPosteringer"/>
+				<xs:element ref="oir:LeverancedataSumAfDebetPosteringer"/>
+				<xs:element ref="oir:LeverancedataSumAfKreditPosteringer"/>
+				<xs:element name="Finansbilag" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element ref="oir:FinansbilagUnikIdentifikation"/>
+							<xs:element ref="oir:FinansbilagBilagsreference"/>
+							<xs:element ref="oir:FinansbilagBogforingsdato"/>
+							<xs:element ref="oir:FinansbilagPeriode"/>
+							<xs:element ref="oir:FinansbilagFirmakode"/>
+							<xs:element ref="oir:FinansbilagVirksomhed"/>
+							<xs:element ref="oir:FinansbilagBilagstitel"/>
+							<xs:element ref="oir:FinansbilagBilagsdato"/>
+							<xs:element name="Posteringsdata" minOccurs="1" maxOccurs="100">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element ref="oir:PosteringsdataUnikIdentifikation"/>
+										<xs:element ref="oir:PosteringsdataBelob"/>
+										<xs:element name="Valuta" minOccurs="0" maxOccurs="1">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element ref="oir:ValutaValuta"/>
+													<xs:element ref="oir:ValutaKurs"/>
+													<xs:element ref="oir:ValutaOmregningsdato"/>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+										<xs:element ref="oir:PosteringsdataDebitKreditIndikator"/>
+										<xs:element ref="oir:PosteringsdataValordato"/>
+										<xs:element ref="oir:PosteringsdataPosteringstekst"/>
+										<xs:element ref="oir:PosteringsdataAllokeringsfelt"/>
+										<xs:element name="Ydelsesperiode" minOccurs="0">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element ref="oir:PosteringsdataYdelsesperiodeStartDato"/>
+													<xs:element ref="oir:PosteringsdataYdelsesperiodeSlutDato"/>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="Bilag" minOccurs="0" maxOccurs="unbounded">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element ref="oir:BilagFil"/>
+													<xs:element ref="oir:BilagFilType"/>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="Referencenogle" minOccurs="0" maxOccurs="unbounded">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element ref="oir:ReferencenogleType"/>
+													<xs:element ref="oir:ReferencenogleVaerdi"/>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="Registrantbogforing" minOccurs="0">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="Betalingsmodtager">
+														<xs:complexType>
+															<xs:sequence>
+																<xs:element ref="oir:BetalingsmodtagerPartIDType"/>
+																<xs:element ref="oir:BetalingsmodtagerPartID"/>
+																<xs:element ref="oir:BetalingsmodtagerOplysningspligt"/>
+															</xs:sequence>
+														</xs:complexType>
+													</xs:element>
+													<xs:element name="Ydelsesmodtager">
+														<xs:complexType>
+															<xs:sequence>
+																<xs:element ref="oir:YdelsesmodtagerPartIDType"/>
+																<xs:element ref="oir:YdelsesmodtagerPartID"/>
+															</xs:sequence>
+														</xs:complexType>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="PrimaereDimensioner">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element ref="oir:PrimaereDimensionerOrganisatoriskReference"/>
+													<xs:element ref="oir:PrimaereDimensionerKonto"/>
+													<xs:element ref="oir:PrimaereDimensionerDranst"/>
+													<xs:element ref="oir:PrimaereDimensionerEjerforhold"/>
+													<xs:element ref="oir:PrimaereDimensionerOmkostningssted"/>
+													<xs:element ref="oir:PrimaereDimensionerArt"/>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="SekundaereDimensioner" minOccurs="0" maxOccurs="unbounded">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element ref="oir:SekundaereDimensionerVaerdi"/>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>
